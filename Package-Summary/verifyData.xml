@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="5154a834-3d20-45fd-b388-0b5b7fb6a488" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="verifyData" searchProperties="true" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="5154a834-3d20-45fd-b388-0b5b7fb6a488fileName">verifyData</con:setting>
+  </con:settings>
+  <con:testStep type="httprequest" name="PackageSummaryAPI" id="349ed8c5-e063-425f-bc8f-eeae89ba97e3">
+    <con:settings/>
+    <con:config method="GET" xsi:type="con:HttpRequest" id="b296cf64-0c55-483b-9daf-ecd480d89c9b" name="PackageSummaryAPI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="UserTrackingId" value="ashwini.gavate@holidayme.com"/>
+  &lt;con:entry key="x-hme-corelationId" value="1"/>
+&lt;/xml-fragment></con:setting>
+      </con:settings>
+      <con:endpoint>https://qaapi.holidayme.co.in/Recommendation.GetPackage/Get?pids=1520427811756 &amp;lang=en&amp;lat=18.5302&amp;long=73.8670999&amp;did=</con:endpoint>
+      <con:request/>
+      <con:assertion type="Valid HTTP Status Codes" id="799626c2-1370-4a38-859c-5983875cb3e4" name="Valid HTTP Status Codes">
+        <con:settings/>
+        <con:configuration>
+          <codes>200</codes>
+        </con:configuration>
+      </con:assertion>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:jmsPropertyConfig/>
+      <con:parameters/>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="Property Transfer" id="778ec1c4-f86f-4127-af2b-72a5c188da5c">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>HotelIds</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>PackageSummaryAPI</con:sourceStep>
+        <con:sourcePath>$Response[*].CityComponents.Hotels[*].Id[*]</con:sourcePath>
+        <con:targetType>HotelIds</con:targetType>
+        <con:targetStep>#TestSuite#</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:targetTransferType>JSONPATH</con:targetTransferType>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>ActivityIds</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>PackageSummaryAPI</con:sourceStep>
+        <con:sourcePath>$Response[*].CityComponents.Activities[*].Id</con:sourcePath>
+        <con:targetType>ActivityIds</con:targetType>
+        <con:targetStep>#TestSuite#</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:targetTransferType>JSONPATH</con:targetTransferType>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>CityIds</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>PackageSummaryAPI</con:sourceStep>
+        <con:sourcePath>$Response[*].CityComponents.Id</con:sourcePath>
+        <con:targetType>CityIds</con:targetType>
+        <con:targetStep>#TestSuite#</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:targetTransferType>JSONPATH</con:targetTransferType>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>PackageId</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>PackageSummaryAPI</con:sourceStep>
+        <con:sourcePath>Response[0].PackageId</con:sourcePath>
+        <con:targetType>PackageId</con:targetType>
+        <con:targetStep>#TestSuite#</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:targetTransferType>JSONPATH</con:targetTransferType>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>NightCombination</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>PackageSummaryAPI</con:sourceStep>
+        <con:sourcePath>$.Response[0].NightCombinations</con:sourcePath>
+        <con:targetType>NightCombination</con:targetType>
+        <con:targetStep>#TestSuite#</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:targetTransferType>JSONPATH</con:targetTransferType>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>Transfers</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>PackageSummaryAPI</con:sourceStep>
+        <con:sourcePath>$.Response[0].TransferRecommendations</con:sourcePath>
+        <con:targetType>Transfers</con:targetType>
+        <con:targetStep>#TestSuite#</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:targetTransferType>JSONPATH</con:targetTransferType>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>Flights</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>PackageSummaryAPI</con:sourceStep>
+        <con:sourcePath>Response[0].RecommendedFlights</con:sourcePath>
+        <con:targetType>Flights</con:targetType>
+        <con:targetStep>#TestSuite#</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:targetTransferType>JSONPATH</con:targetTransferType>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Get_Package_Data" id="f8e49e4a-c6d3-422d-8307-49b43d9d8c16">
+    <con:settings/>
+    <con:config>
+      <script>import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.Projections;
+import org.bson.Document;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
+import java.util.List;
+
+MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://QARecommendationUser:pf54OqXKI6sJbMsS@cluster0-undpd.mongodb.net/QARecommendation"));
+MongoDatabase database = mongoClient.getDatabase("QARecommendation");
+
+MongoCollection&lt;Document> documents = database.getCollection("Package");
+//log.info documents
+BasicDBObject obj= new BasicDBObject();
+obj.put( "PackageId",Long.parseLong(testRunner.testCase.testSuite.getPropertyValue("PackageId")));
+FindIterable&lt;Document> filteredDocuments=documents.find(obj).projection(Projections.include("ArrivingAirportCode","IsActive","CutOffDays", "Markup","PartialCutOffDays","ReturnAirportCode","Transfers","ImageUrl","NightCombinations", "USP_ar","USP_en","PackageTitle_ar","PackageTitle_en"));
+ArrayList&lt;Document> docs = new ArrayList&lt;Document>();
+filteredDocuments.into(docs);
+//log.info docs
+
+mongoClient.close();
+assert docs.size() == 1;
+
+//below fields required for getting flights details
+testRunner.testCase.testSuite.setPropertyValue("ArrivingAirportCode", docs[0].ArrivingAirportCode);
+testRunner.testCase.testSuite.setPropertyValue("ReturnAirportCode", docs[0].ReturnAirportCode);
+JSONParser jsonParser = new JSONParser();
+
+Document response = jsonParser.parse(context.testCase.getTestStepByName('PackageSummaryAPI').getProperty('Response').getValue().toString());
+
+//log.info response
+
+assert docs[0].PartialCutOffDays == response.Response[0].PartialCutOffDays
+assert docs[0].ImageUrl == response.Response[0].Image
+assert docs[0].CutOffDays == response.Response[0].CutOffDays
+assert docs[0].Markup.toString() == response.Response[0].Markup.toString()</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="VerifyActivityIds" id="ffda775d-6a01-4d3f-9d5c-4983a594dc03">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.Projections;
+import org.bson.Document;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
+import java.util.List;
+
+MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://QARecommendationUser:pf54OqXKI6sJbMsS@cluster0-undpd.mongodb.net/QARecommendation"));
+MongoDatabase database = mongoClient.getDatabase("QARecommendation");
+
+MongoCollection<Document> documents = database.getCollection("Activity");
+String list=testRunner.testCase.testSuite.getPropertyValue("ActivityIds");
+List l=Arrays.asList(list.substring(1, list.size()-1).replaceAll(" ","").split(","))
+
+List<Integer> values=new ArrayList<Integer>();
+				
+				for(String d : l)
+				{
+					values.add(Integer.parseInt(d));
+				}
+BasicDBObject db= new BasicDBObject("ActivityId",new BasicDBObject('$in',values))
+//log.info db
+FindIterable<Document> filteredDocuments=documents.find(db).projection(Projections.include("CityId"));
+ArrayList<Document> docs = new ArrayList<Document>();
+filteredDocuments.into(docs);
+///log.info docs
+
+for(Document doc : docs)
+{
+	//log.info testRunner.testCase.testSuite.getPropertyValue("CityIds").contains(doc["CityId"].toString())
+	assert testRunner.testCase.testSuite.getPropertyValue("CityIds").contains(doc["CityId"].toString())
+}
+mongoClient.close();]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="VerifyHotelIds" id="311a4309-f463-4b57-b9e6-e3e378336529">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.Projections;
+import org.bson.Document;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
+import java.util.List;
+
+MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://QARecommendationUser:pf54OqXKI6sJbMsS@cluster0-undpd.mongodb.net/QARecommendation"));
+MongoDatabase database = mongoClient.getDatabase("QARecommendation");
+
+MongoCollection<Document> documents1 = database.getCollection("Hotel");
+String list=testRunner.testCase.testSuite.getPropertyValue("HotelIds");
+List l=Arrays.asList(list.substring(1, list.size()-1).replaceAll(" ","").split(","))
+
+List<Integer> values1=new ArrayList<Integer>();
+				
+				for(String d : l)
+				{
+					values1.add(Integer.parseInt(d));
+				}
+				//log.info values1.size()
+				
+BasicDBObject db1= new BasicDBObject("HotelId",new BasicDBObject('$in',values1))
+
+
+//String cityIds= testRunner.testCase.testSuite.getPropertyValue("CityIds");
+//List cityList = Arrays.asList(cityIds.substring(1, cityIds.size()-1).replaceAll(" ","").split(","))
+//List<Integer> CityListInt=new ArrayList<Integer>();
+//				
+//				for(String city : cityList)
+//				{
+//					CityListInt.add(Integer.parseInt(city));
+//				}
+//
+//			
+//List<BasicDBObject> db = new ArrayList<BasicDBObject>()
+//db.add(db1);
+//BasicDBObject db2 = new BasicDBObject("CityId",new BasicDBObject('$in',CityListInt))
+//db.add(db2)
+//log.info new BasicDBObject('$and',db)
+//log.info db1
+FindIterable<Document> filteredDocuments1=documents1.find(db1).projection(Projections.include("CityId"));
+ArrayList<Document> docs1 = new ArrayList<Document>();
+filteredDocuments1.into(docs1);
+
+for(Document doc1 : docs1)
+{
+	assert testRunner.testCase.testSuite.getPropertyValue("CityIds").contains(doc1["CityId"].toString())
+}
+
+mongoClient.close();]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="VerifyNightCombination" id="5313d82b-6d22-453f-a316-c5e6968bf135">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.Projections;
+import org.bson.Document;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
+import java.util.List;
+
+MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://QARecommendationUser:pf54OqXKI6sJbMsS@cluster0-undpd.mongodb.net/QARecommendation"));
+MongoDatabase database = mongoClient.getDatabase("QARecommendation");
+
+MongoCollection<Document> documents = database.getCollection("Package");
+BasicDBObject obj= new BasicDBObject();
+obj.put( "PackageId",Long.parseLong(testRunner.testCase.testSuite.getPropertyValue("PackageId")));
+FindIterable<Document> filteredDocuments=documents.find(obj).projection(Projections.include("NightCombinations"));
+ArrayList<Document> docs = new ArrayList<Document>();
+filteredDocuments.into(docs);
+mongoClient.close();
+
+JSONParser jsonParser = new JSONParser();
+List<Document> doc=(JSONArray) jsonParser.parse(testRunner.testCase.testSuite.getPropertyValue("NightCombination").toString())
+
+for(int i=0; i<docs[0].NightCombinations.size();i++)
+{
+	for(int j=0; j<docs[0].NightCombinations[i].CityNights.size();j++)
+	{
+		assert docs[0].NightCombinations[i].CityNights[j].CityId == doc[i].CityNights[j].CityId
+	}
+}]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="VerifyTransfers" id="d99d16fc-297d-4921-9d93-6b1573f1d431">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.Projections;
+import org.bson.Document;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
+import java.util.List;
+
+MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://QARecommendationUser:pf54OqXKI6sJbMsS@cluster0-undpd.mongodb.net/QARecommendation"));
+MongoDatabase database = mongoClient.getDatabase("QARecommendation");
+
+MongoCollection<Document> documents = database.getCollection("Package");
+BasicDBObject obj= new BasicDBObject();
+obj.put( "PackageId",Long.parseLong(testRunner.testCase.testSuite.getPropertyValue("PackageId")));
+FindIterable<Document> filteredDocuments=documents.find(obj).projection(Projections.include("Transfers"));
+ArrayList<Document> docs = new ArrayList<Document>();
+filteredDocuments.into(docs);
+mongoClient.close();
+obj.clear();
+//log.info docs
+JSONParser jsonParser = new JSONParser();
+List<Document> doc=(JSONArray) jsonParser.parse(testRunner.testCase.testSuite.getPropertyValue("Transfers").toString())
+//log.info doc
+//log.info docs[0].Transfers.size()
+//log.info doc[0].TransferMode
+if(doc.size() > 0 && docs.size() > 0)
+{
+	Boolean flag=false;
+
+	for(int i=0; i<docs[0].Transfers.size();i++)
+	{
+		for(int j=0;j<doc.size();j++)
+		{
+			if(docs[0].Transfers[i].By == doc[j].TransferMode && docs[0].Transfers[i].FromId == doc[j].From && docs[0].Transfers[i].FromType == doc[j].FromType && docs[0].Transfers[i].ToId == doc[j].To && docs[0].Transfers[i].ToType == doc[j].ToType) 
+				flag = true;
+		}
+	}
+ 	assert flag == true;
+}
+//mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://HMETransferUser:i824naD8cDdInK9g@cluster0-undpd.mongodb.net/HMETransfer"));
+//database = mongoClient.getDatabase("HMETransfer");
+//MongoCollection<Document> documents1 = database.getCollection("Transfers");
+//
+//List<BasicDBObject> ObjList = new ArrayList<BasicDBObject>();
+
+
+
+//log.info docs[0].Transfers.size()
+//log.info docs[0].Transfers[0].By
+//"From" "FromTypeId" "To" "ToTypeId"
+
+//for(int i=0; i< docs[0].Transfers.size();i++)
+//{
+//	List<BasicDBObject> obj1=new ArrayList<BasicDBObject>();
+//	BasicDBObject o1=new BasicDBObject();
+//	o1.put("TypeOfTransport",docs[0].Transfers[i].By);
+//	obj1.add(o1);
+//	//o1.clear();
+//
+//	BasicDBObject o2=new BasicDBObject();
+//	o2.put("From",docs[0].Transfers[i].FromId);
+//	obj1.add(o2);
+//	//o2.clear();
+//
+//	BasicDBObject o3=new BasicDBObject();
+//	o3.put("FromTypeId",Integer.parseInt(docs[0].Transfers[i].FromType.toString()));
+//	obj1.add(o3);
+//	//o3.clear();
+//
+//	BasicDBObject o4=new BasicDBObject();
+//	o4.put("To",docs[0].Transfers[i].ToId);
+//	obj1.add(o4);
+//	//o4.clear();
+//
+//	BasicDBObject o5=new BasicDBObject();
+//	o5.put("ToTypeId",Integer.parseInt(docs[0].Transfers[i].ToType.toString()));
+//	obj1.add(o5);
+//	//o5.clear();
+//	
+//obj.put('$and',obj1);
+//
+//	//log.info obj	
+//ObjList.add(obj);
+//}
+//
+////log.info ObjList
+//BasicDBObject o6=new BasicDBObject();
+//o6.put('$or',ObjList);
+//log.info o6
+//FindIterable<Document> filteredDocuments1=documents1.find(obj).projection(Projections.include("Transfers"));
+//ArrayList<Document> docs1 = new ArrayList<Document>();
+//filteredDocuments1.into(docs1);
+//mongoClient.close();
+//log.info docs1]]></script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="VerifyFlights" id="30380816-cbe2-4870-9a2f-ae168a138ff5">
+    <con:settings/>
+    <con:config>
+      <script><![CDATA[import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.Projections;
+import org.bson.Document;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
+import java.util.List;
+
+MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://QARecommendationUser:pf54OqXKI6sJbMsS@cluster0-undpd.mongodb.net/QARecommendation"));
+MongoDatabase database = mongoClient.getDatabase("QARecommendation");
+
+MongoCollection<Document> documents = database.getCollection("Flight");
+BasicDBObject obj= new BasicDBObject();
+obj.put( "ArrivalFrom",testRunner.testCase.testSuite.getPropertyValue("ArrivingAirportCode"));
+log.info obj
+BasicDBObject obj1= new BasicDBObject();
+obj1.put( "DepartureTo",testRunner.testCase.testSuite.getPropertyValue("ReturnAirportCode"));
+
+List<BasicDBObject> lst =new ArrayList<BasicDBObject>();
+lst.add(obj);
+lst.add(obj1);
+log.info new BasicDBObject('$and',lst)
+FindIterable<Document> filteredDocuments=documents.find(new BasicDBObject('$and',lst))//.projection(Projections.include("ArrivalFrom","DepartureTo"));
+ArrayList<Document> docs = new ArrayList<Document>();
+filteredDocuments.into(docs);
+//log.info docs
+mongoClient.close();
+//log.info doc
+JSONParser jsonParser = new JSONParser();
+List<Document> doc=(JSONArray) jsonParser.parse(testRunner.testCase.testSuite.getPropertyValue("Flights").toString())
+//log.info doc.size()
+//log.info docs.size()
+//log.info docs[0]
+//log.info docs[1]
+
+//log.info doc
+
+int k=0;
+for(int i=0; i<doc.size();)
+{
+	for(int j=0; j<docs[k].Flights.size();j++)
+	{
+		if(i<doc.size())
+		{
+			assert doc[i].ArrivalFrom == docs[k].Flights[j].ArrivalFrom;
+			assert doc[i].ArrivalFlightNos == docs[k].Flights[j].ArrivalFlightNos;
+			assert doc[i].ArrivalTo == docs[k].Flights[j].ArrivalTo;
+			assert doc[i].DepartureFlightNos == docs[k].Flights[j].DepartureFlightNos;
+			assert doc[i].DepartureFrom == docs[k].Flights[j].DepartureFrom;
+			assert doc[i].DepartureTo == docs[k].Flights[j].DepartureTo;
+
+
+			assert doc[i].ParentArrivalFrom == docs[k].ArrivalFrom;
+			assert doc[i].ParentArrivalTo == docs[k].ArrivalTo;
+			assert doc[i].ParentDepartureFrom == docs[k].DepartureFrom;
+			assert doc[i].ParentDepartureTo == docs[k].DepartureTo;
+			assert doc[i].TripType == docs[k].Type;
+			
+			i++;
+		}
+	}
+	k++;
+}]]></script>
+    </con:config>
+  </con:testStep>
+  <con:setupScript/>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>
