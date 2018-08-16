@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-project id="4d8a7562-7a1a-40ef-b33e-55bef541f8ce" activeEnvironment="Default environment" name="Project 2" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" encryptionMode="Not encrypted" compositeProjectFormat="1.3" xmlns:con="http://eviware.com/soapui/config">
-  <con:settings/>
+  <con:settings>
+    <con:setting id="4d8a7562-7a1a-40ef-b33e-55bef541f8cefileName">Project-2</con:setting>
+  </con:settings>
   <con:vcsConfiguration>
     <con:vcsName>Git</con:vcsName>
     <con:repositoryIdentifier>https://github.com/ashwini-gavate/test3</con:repositoryIdentifier>
