@@ -5,7 +5,7 @@
   </con:settings>
   <con:vcsConfiguration>
     <con:vcsName>Git</con:vcsName>
-    <con:repositoryIdentifier>https://github.com/ashwini-gavate/test3/tree/master/Project 1</con:repositoryIdentifier>
+    <con:repositoryIdentifier>https://github.com/ashwini-gavate/test3</con:repositoryIdentifier>
   </con:vcsConfiguration>
   <con:savedRecentRuns>1</con:savedRecentRuns>
   <con:properties/>
